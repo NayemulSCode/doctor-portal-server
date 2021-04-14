@@ -87,6 +87,14 @@ client.connect(err => {
                 res.send(documents);
             })
     });
+    //sidebar permission only doctor show all tab
+    app.post('/isDoctor', (req, res) => {
+        const email = req.body.email;
+        doctorCollection.find({ email: email })
+            .toArray((err, doctors) => {
+                res.send(doctors.length > 0);
+            })
+    })
   console.log('db connected');
 });
 
